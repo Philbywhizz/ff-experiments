@@ -8,20 +8,29 @@
 marker -blink
 
 \ Setup some constants for the ATMega pins for us to use
+$0023 constant PINB
 $0024 constant DDRB
 $0025 constant PORTB
-1 #5 lshift constant bit5
+
+%00100000 constant PB5
 
 : init ( -- )
-    bit5 DDRB mset ; \ Make DDRB bit5 an output
+    PB5 DDRB mset ; \ Make PB5 as an output
 
-: toggle ( -- )
-    PORTB c@ bit5 xor PORTB c! ; \ Toggle bit5 on PORTB
+: on ( pin -- )
+    PORTB mset ;
+
+: off ( pin -- )
+    PORTB mclr ;
+
+: toggle ( pin -- )
+    PINB mset ;
 
 \ Main loop
-: blink ( -- )
+: blink ( pin -- )
     init 
     begin
-        toggle #500 ms 
+        dup 
+        toggle #500 ms
     again ;
 
