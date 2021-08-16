@@ -8,16 +8,13 @@
 -blink-var
 marker -blink-var
 
-$0024 constant DDRB
-$0025 constant PORTB
-1 #5 lshift constant bit5
 variable ms_count 
 
 : init ( -- )
-    bit5 DDRB mset ; \ Make DDRB bit5 an output
+    PIN5 DDRB mset ; \ Make DDRB bit5 an output
 
 : toggle ( -- )
-    PORTB c@ bit5 xor PORTB c! ;
+    PIN5 PINB mset ;
 
 : wait ( -- )
     ms_count @ ms ;

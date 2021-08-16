@@ -4,7 +4,7 @@
 \ ***************************************************************************
 \ Simpy blinks the LED on PORTB bit5 (Pin 19)
 
-\ Requires hal.f
+\ Requires atmega328p.f
 
 -blink
 marker -blink
